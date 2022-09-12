@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using FilmesAPI.Models;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
-using RouteAttribute = Microsoft.AspNetCore.Components.RouteAttribute;
+using RouteAttribute = Microsoft.AspNetCore.Mvc.RouteAttribute;
 
 namespace FilmesAPI.Controllers
 {
@@ -8,5 +9,13 @@ namespace FilmesAPI.Controllers
     [Route("[controller]")]
     public class FilmeController : ControllerBase
     {
+        private static List<Filme> filmes = new List<Filme>();
+
+        [HttpPost]
+        public void AdicionaFilme([FromBody] Filme filme)
+        {
+            filmes.Add(filme);
+            Console.WriteLine(filme.Titulo);
+        }
     }
 }
